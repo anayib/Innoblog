@@ -1,5 +1,11 @@
 <h1>New Article</h1>
-<%= form_for :article do |f| %>
+
+<%= form_for :article, url: articles_path do |f| %> 
+<!-- se especifica la url:articles_path para que 
+	mande los parámetros al controlador articles 
+	pero que no tome la acción new sino que asocie
+	el envio con un post para que se de el create	
+ -->
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
