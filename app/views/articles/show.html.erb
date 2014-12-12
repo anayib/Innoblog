@@ -1,0 +1,56 @@
+<div class="container">
+  
+
+  <div class="container"> 
+        <div class="row">
+            <div class="col-sm-12">           
+               <div style="background-color:#95a5a6">         
+                <h2><spam style="float:right">
+                <%=@article.date%></spam>
+                <%= @article.title %></h2>
+                <p style="float:right">comments:<%= @article.comments.count %></p>
+                <p><%= @article.text %></p>
+            </div>
+                
+            </div>
+        </div>
+  </div>
+  <h3>Comments</h3>
+  <div class="container"> 
+        <div class="row">
+            <div class="col-sm-12">
+
+            <div style="background-color:#95a5a6">
+            
+            <%= render @article.comments %>
+            </div>
+            </div>
+        </div>
+  </div>
+
+  <%# @article.comments.each do |comment| %>
+    <%#= render comment %>  
+  <%# end %>
+
+  <%# @article.comments.each do |comment| %>
+    <%#= render partial: "comments/comment", locals: { comment: comment } %>
+  <%# end %>
+
+  
+
+  <div class="container"> 
+        <div class="row">
+            <div class="col-sm-12">
+
+            <div style="background-color:#95a5a6">
+            
+            <%= render "comments/form"%>
+            </div>
+            </div>
+        </div>
+  </div>
+
+  <%= link_to 'Back', articles_path %>
+   <%= link_to 'Edit', edit_article_path(@article) %>
+
+</div>
