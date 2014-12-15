@@ -4,14 +4,24 @@ class ArticlesController < ApplicationController
     @articles=Article.all
     @articlesOrdered = @articles.order('created_at DESC')
 
+    @comments_per_article = Article.joins(:comments).group(:article_id).order('count_all DESC').limit(2).count
 
-    @articles.each do |article|
+    #@comments_ordered = comments_per_artilce.sort{ |x,y| y<=>x }
 
-      @numbre_of_comments = article.comments.count
-      @article_hash = Hash.new
-      @article_hash[:article_id]= @numbre_of_comments
-      @article.hash{ |x,y| y<=>x }
-    end
+    Article.joins(:comments).group(:article_id).order('count_all desc').count
+
+    #Estas líneas hacen lo mismo que el join de arriba
+    #se está haciendo manualmente la creación de un
+    #hash y se está ordenando de mayor a menor
+
+    # #@article_hash = Hash.new
+
+    # @articles.each do |article|
+    #   @numbre_of_comments = article.comments.count
+    #   @article_hash[article.id]= @numbre_of_comments
+    # end
+    # @article_hash.sort{ |x,y| y<=>x }
+
   end
 
   def new

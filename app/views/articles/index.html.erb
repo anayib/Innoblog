@@ -29,11 +29,12 @@
 	        <% end %>
 
 
+	        <%@comments_per_article.each do |key, value| %>
+	        <%articles_most_commented = Article.find(key)%>
+					<p><%= articles_most_commented.title %></p>
+					<p><%= value %><spam> comentarios</spam></p>
 
-
-
-
-
+	        <% end %>
 
 
 	        </div>
