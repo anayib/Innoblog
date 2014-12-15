@@ -1,22 +1,32 @@
 class ArticlesController < ApplicationController
-	
+
   def index
     @articles=Article.all
     @articlesOrdered = @articles.order('created_at DESC')
+
+
+    @articles.each do |article|
+
+      @numbre_of_comments = article.comments.count
+      @article_hash = Hash.new
+      @article_hash[:article_id]= @numbre_of_comments
+      @article.hash{ |x,y| y<=>x }
+    end
   end
 
-  def new 
-    @article = Article.new      
+  def new
+    @article = Article.new
   end
 
   def create
 
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
      if @article.save
     redirect_to @article #es un shortcut para article_path(@article)
     else
     render 'new'
-    end  
+    end
   end
 
   def edit
@@ -43,8 +53,8 @@ class ArticlesController < ApplicationController
   end
 
 
-    
- 
+
+
 
   private
 
